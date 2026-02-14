@@ -1,5 +1,24 @@
 from flask import Flask, request,   render_template
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+import pymongo 
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+#seeting up mongo db server using mongocloud and .env file for saftey
+load_dotenv()
+
+uri = os.getenv("MONGO_URI")   # if using dotenv
+client = MongoClient(uri)
+
+MONGO_URI = os.getenv('MONGO_URI')
+
+client = pymongo.MongoClient(MONGO_URI)
+
+db = client.test
+
+collection = db['flask-tutorial']
 
 app = Flask(__name__)
 
@@ -11,7 +30,41 @@ def home():
 
     return render_template('index.html', day_of_week= day_of_week,current_time=current_time)
 
+#storing of data on a mongodb server using flask server
+@app.route('/submit', methods=['POST'])
+def submit():
+    
+    form_data = dict(request.form)
 
+    collection.insert_one(form_data)
+    
+    return 'data submitted successfully'
+
+@app.route('/view')
+def view():
+    data =collection.find()
+
+    data = list(data)
+    
+    for item in data:
+
+     print(item)
+    
+     del item['_id']
+ 
+    data ={
+       'data':data
+
+    }
+    
+    return data
+
+    """
+    name = request.form.get('name')
+
+    print(request.args)
+    return 'Hello, ' + name + '!'
+    """
 # decleratio of  variable in jinja is {{ _name of varianle called in backed }} 
 
 #---------------------------------

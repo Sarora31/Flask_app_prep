@@ -7,10 +7,26 @@
     <title>Sign  UP Form </title>
 </head>
 <body>
-<p> Hi ! Welcome to the sign up page </p>
-<p> Today is {{ day_of_week }}</p> 
-<p> Today is {{ current_time }}</p> 
+    <p> Hi ! Welcome to the sign up page </p>
+    <p> Today is {{ day_of_week }}</p> 
+    <p> Today is {{ current_time }}</p> 
 
+    <div class= "centerd">
+
+        <form action="/submit" method="POST" >
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <br>            
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
 
 </body>
 
@@ -23,7 +39,15 @@
         font-size:30px;
         font-family: Arial, Helvetica, sans-serif;
         color: black;
-
     }
+    .centerd {
+        margin: auto;
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 7px;
+        border: 3px solid green;
+    }
+
+
 </style>
 </html>
