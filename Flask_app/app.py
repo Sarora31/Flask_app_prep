@@ -180,7 +180,7 @@ def name(name):
         return 'Nice name!!!'
 """
 # we have defined the application here but 
-# we have yet to run the application so syntax to run a applicationi s below.
+# we have yet to run the application so syntax to run a application is below.
 #or we can say call function of the app
 
 if __name__ == '__main__':
